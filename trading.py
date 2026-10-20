@@ -14,7 +14,7 @@ class student():
         self.candy = random.choice(candies)
 
     # getters
-    def getPreferences(self):                               # Why do getters need an argument to self?
+    def getPreferences(self):                              
         return self.preferences
 
     def getCandy(self):
@@ -27,5 +27,12 @@ class student():
     def setCandy(self, candy: str):
         self.candy = candy
 
-if __name__ == "__main__":
-    pass
+# def main():
+#     for i in range(30):
+
+# if __name__ == "__main__":
+#     main()
+
+# Questions:
+# Why do getters need an argument to self?
+# How does an "if __name__ == "__main__" block work?
