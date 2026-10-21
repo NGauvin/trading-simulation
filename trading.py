@@ -16,18 +16,26 @@ class Student():
         self.candy = random.choice(candies)
 
     # getters
-    def getPreferences(self):                              
+    def get_preferences(self):                              
         return self.preferences
 
-    def getCandy(self):
+    def get_candy(self):
         return self.candy
     
     # setters
-    def setPreferences(self, preferences: dict):
+    def set_preferences(self, preferences: dict):
         self.preferences = preferences
 
-    def setCandy(self, candy: str):
+    def set_candy(self, candy: str):
         self.candy = candy
+
+    # trading behavior
+    def trade(self, peer: "Student"):
+        if self.preferences[peer.candy] > self.preferences[self.candy]:
+            return True
+        else:
+            return False
+
 
 def read_file(filename: str):
     student_names = []
@@ -46,12 +54,29 @@ def assign_pairs(classroom: list):
     pairs = [(shuffled_classroom[i], shuffled_classroom[i+1]) for i in range(0, len(shuffled_classroom), 2)]    # Why use range() instead of just the shuffled classroom directly?
     return pairs
 
-def tradingRound():
-    classroom = read_file("students.txt")
+def run_trading_round(classroom: list):
+    # segment into pairs
     pairs = assign_pairs(classroom)
 
+    # trading functionality
+    for pair in pairs:
+        if pair[0].trade(pair[1]) & pair[1].trade(pair[0]):
+            # swap candies
+            placeholder = pair[0].candy
+            pair[0].set_candy(pair[1].candy)
+            pair[1].set_candy(placeholder)
+
 def main():
-    pass
+    total_utility = 0
+    classroom = read_file("students.txt")
+
+    for student in classroom:
+        total_utility += student.preferences[student.candy]
+    print(f"Total Utility: {total_utility}")
+    run_trading_round(classroom)
+    total_utility = 0
+    for student in classroom:
+            total_utility += student.preferences[student.candy]
 
 
 if __name__ == "__main__":
