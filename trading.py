@@ -50,7 +50,8 @@ def read_file(filename: str):
     return classroom
 
 def assign_pairs(classroom: list):
-    shuffled_classroom = random.shuffle(classroom.copy())
+    shuffled_classroom = classroom.copy()
+    random.shuffle(shuffled_classroom)
     pairs = [(shuffled_classroom[i], shuffled_classroom[i+1]) for i in range(0, len(shuffled_classroom), 2)]    # Why use range() instead of just the shuffled classroom directly?
     return pairs
 
@@ -77,6 +78,7 @@ def main():
     total_utility = 0
     for student in classroom:
             total_utility += student.preferences[student.candy]
+    print(f"Total Utility: {total_utility}")
 
 
 if __name__ == "__main__":
