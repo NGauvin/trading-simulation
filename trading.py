@@ -77,13 +77,13 @@ def main():
 
     for student in classroom:
         total_utility += student.preferences[student.candy]
-    print(f"Total Utility: {total_utility}")
+    print(f"\033[1mTotal Utility: {total_utility}\033[0m")
     run_trading_round(classroom)
     total_utility = 0
     for student in classroom:
             total_utility += student.preferences[student.candy]
     print("-------------------------------------------------------------\n")
-    print(f"Total Utility: {total_utility}")
+    print(f"\033[1mTotal Utility: {total_utility}\033[0m")
 
 
 if __name__ == "__main__":
@@ -97,6 +97,7 @@ if __name__ == "__main__":
 # Notes for future changes
 # Make it so that classrooms can only have an even number of students since they trade in pairs.
 # Think about the best way to implement the random pairing functionality. 
+# Practice learning ANSI escape codes. 
 
 # Debugging
 # Candies are not switching. Why?
