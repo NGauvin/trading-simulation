@@ -1,5 +1,12 @@
 import random
 
+# ANSI escape codes for styling
+BOLD = "\033[1m"
+GREEN = "\033[38;2;50;255;50m"
+RESET = "\033[0m"
+
+
+
 candies = ["starburst", "skittles", "milkyway", "jolly rancher", "Reese's", "Hershey's", "Snickers", "Kit Kat", "Twix", "Gummybears"]
 
 class Student():
@@ -77,13 +84,13 @@ def main():
 
     for student in classroom:
         total_utility += student.preferences[student.candy]
-    print(f"\033[1mTotal Utility: {total_utility}\033[0m")
+    print(f"{BOLD}{GREEN}Total Utility: {total_utility}{RESET}")
     run_trading_round(classroom)
     total_utility = 0
     for student in classroom:
             total_utility += student.preferences[student.candy]
     print("-------------------------------------------------------------\n")
-    print(f"\033[1mTotal Utility: {total_utility}\033[0m")
+    print(f"{BOLD}{GREEN}Total Utility: {total_utility}{RESET}")
 
 
 if __name__ == "__main__":
